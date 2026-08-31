@@ -54,10 +54,13 @@ findings — hypotheses, not verdicts: evaluate every comment on its merits
 against the actual code, fix what is confirmed, and where you disagree, reply
 with concrete evidence for why the code is correct as written. Respond to
 every comment and resolve each conversation once it is addressed either way,
-then push the resulting fixes and re-request review. Iterate until a review
-pass raises no new actionable issues — a point already answered with evidence
-and merely restated does not count as new. If Copilot is unavailable, say so
-and skip this layer rather than substituting a self-review for it.
+then push the resulting fixes and re-request review. Bound the loop: stop
+after the first round that surfaces no newly confirmed bug, and run at most
+three rounds regardless — a point already answered with evidence and merely
+restated does not count as new. If the third round still surfaces confirmed
+bugs, stop anyway and report what remains outstanding instead of iterating
+further. If Copilot is unavailable, say so and skip this layer rather than
+substituting a self-review for it.
 
 Rules for every layer:
 

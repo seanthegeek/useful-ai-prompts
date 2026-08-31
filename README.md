@@ -18,8 +18,8 @@ pasted into any capable AI assistant.
   Each layer reports findings for confirmation, and every suspected bug must
   be demonstrated empirically before it is fixed. An optional final layer
   requests a Copilot review of the pull request and iterates — responding to
-  every comment and resolving each conversation — until a pass raises no new
-  actionable issues.
+  every comment and resolving each conversation — stopping after the first
+  round that surfaces no newly confirmed bug, and after three rounds at most.
 
 ## License
 
