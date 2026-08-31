@@ -1,5 +1,5 @@
 ---
-description: Layered cross-check review — prose vs. code, names vs. values, coverage vs. reachability
+description: Layered cross-check review — prose vs. code, names vs. values, code vs. spec, coverage vs. reachability, optional Copilot review loop
 ---
 
 Run a layered cross-check review of this codebase. Each layer compares two
@@ -26,11 +26,38 @@ configuration knobs wired to the wrong constant (leaving a documented setting
 dead); singular/plural mismatches; names copy-pasted from a sibling module;
 the same concept named differently across sibling APIs.
 
-Layer 3 — Coverage vs. reachability. For each uncovered line, determine
+Layer 3 — Code vs. official references. Wherever the code implements or
+consumes a published standard or external interface — an RFC, a W3C/WHATWG
+spec, a language proposal (PEP or equivalent), a wire protocol or file format,
+or a third-party service's API — verify the implementation against the current
+official text, fetched fresh rather than recalled from memory. Check status
+codes and their semantics, header and field names (and casing), required vs.
+optional fields, value formats (dates, encodings, MIME types, units), limits,
+ordering and state-machine rules, and error handling against what the code
+actually sends, accepts, and validates. Flag conformance to obsoleted or
+superseded versions: an RFC with a successor, a deprecated API version or
+endpoint, parameters the vendor has removed or renamed. Cite the exact
+reference (RFC number and section, PEP number, doc URL) as evidence for each
+finding, and distinguish MUST violations from SHOULD deviations.
+
+Layer 4 — Coverage vs. reachability. For each uncovered line, determine
 whether the branch is genuinely reachable and whether the condition guarding
 it is correct BEFORE writing a test. A nearly-unreachable error branch usually
 means the validation above it is broken — fix the validation. Never write a
 test that pins broken behavior, and never fake coverage.
+
+Layer 5 — Second set of eyes (only if requested, and only if available). If
+this layer was asked for and the work is on a pull request where the Copilot
+code reviewer can be requested, request a balanced review from Copilot once
+the other layers' fixes are pushed. Treat its comments like any other
+findings — hypotheses, not verdicts: evaluate every comment on its merits
+against the actual code, fix what is confirmed, and where you disagree, reply
+with concrete evidence for why the code is correct as written. Respond to
+every comment and resolve each conversation once it is addressed either way,
+then push the resulting fixes and re-request review. Iterate until a review
+pass raises no new actionable issues — a point already answered with evidence
+and merely restated does not count as new. If Copilot is unavailable, say so
+and skip this layer rather than substituting a self-review for it.
 
 Rules for every layer:
 

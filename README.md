@@ -13,9 +13,13 @@ pasted into any capable AI assistant.
 
 - [`cross-check-review`](commands/cross-check-review.md) — a layered review
   process that finds real bugs by comparing two representations of the same
-  intent: prose vs. code, names vs. values, and coverage vs. reachability.
+  intent: prose vs. code, names vs. values, code vs. official references
+  (RFCs, PEPs, service API docs), and coverage vs. reachability.
   Each layer reports findings for confirmation, and every suspected bug must
-  be demonstrated empirically before it is fixed.
+  be demonstrated empirically before it is fixed. An optional final layer
+  requests a Copilot review of the pull request and iterates — responding to
+  every comment and resolving each conversation — until a pass raises no new
+  actionable issues.
 
 ## License
 
