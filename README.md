@@ -17,9 +17,11 @@ pasted into any capable AI assistant.
   (RFCs, PEPs, service API docs), and coverage vs. reachability.
   Each layer reports findings for confirmation, and every suspected bug must
   be demonstrated empirically before it is fixed. An optional final layer
-  requests a Copilot review of the pull request and iterates — responding to
-  every comment and resolving each conversation — stopping after the first
-  round that surfaces no newly confirmed bug, and after three rounds at most.
+  requests a Copilot review of the pull request and iterates — replying to
+  every inline comment with attribution, answering suppressed low-confidence
+  findings in a PR comment, and resolving each conversation — stopping after
+  the first round that surfaces no newly confirmed bug, and after three rounds
+  at most.
 - [`address-copilot-review`](commands/address-copilot-review.md) — works
   through the latest Copilot review on the current pull request: confirms or
   refutes each finding empirically, fixes or declines it, pushes, replies on
