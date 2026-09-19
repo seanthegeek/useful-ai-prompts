@@ -20,6 +20,12 @@ pasted into any capable AI assistant.
   requests a Copilot review of the pull request and iterates — responding to
   every comment and resolving each conversation — stopping after the first
   round that surfaces no newly confirmed bug, and after three rounds at most.
+- [`address-copilot-review`](commands/address-copilot-review.md) — works
+  through the latest Copilot review on the current pull request: confirms or
+  refutes each finding empirically, fixes or declines it, pushes, replies on
+  each inline thread with attribution and evidence (including unanswered
+  comments from earlier rounds), and answers Copilot's suppressed
+  low-confidence findings in a single PR comment.
 
 ## License
 
