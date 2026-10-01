@@ -54,14 +54,18 @@ findings — hypotheses, not verdicts: evaluate every comment on its merits
 against the actual code, fix what is confirmed, and where you disagree, reply
 with concrete evidence for why the code is correct as written. Respond to
 every inline comment as a reply on its own thread, naming Copilot as the
-source and quoting the finding, and resolve each conversation once it is
-addressed either way. Copilot also lists low-confidence findings it chose not
-to post inline in its review body (under a heading such as "Comments
-suppressed due to low confidence"); evaluate those exactly like the inline
-ones and, since they have no thread to reply to, answer them in a single
-pull request comment that quotes each suppressed finding and gives its
-fix-or-decline outcome with evidence. Then push the resulting fixes and
-re-request review. Bound the loop: stop
+source but not repeating the finding, which sits directly above the reply,
+and resolve each conversation once it is addressed either way. Read the whole
+review body, every section, not just its list of inline findings: Copilot
+also lists findings there that have no inline thread, under headings such as
+"Comments suppressed due to low confidence" and "Previously missed" (code
+unchanged since the last review). Evaluate those exactly like the inline
+ones and answer them in a single pull request comment that quotes each one,
+since nothing else on the page shows what is being answered, and gives its
+fix-or-decline outcome with evidence. End every reply and comment with the
+Claude Code attribution line, 🤖 Generated with
+[Claude Code](https://claude.com/claude-code). Then push the resulting fixes
+and re-request review. Bound the loop: stop
 after the first round that surfaces no newly confirmed bug, and run at most
 three rounds regardless — a point already answered with evidence and merely
 restated does not count as new. If the third round still surfaces confirmed
