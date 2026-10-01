@@ -25,9 +25,11 @@ pasted into any capable AI assistant.
 - [`address-copilot-review`](commands/address-copilot-review.md) — works
   through the latest Copilot review on the current pull request: confirms or
   refutes each finding empirically, fixes or declines it, pushes, replies on
-  each inline thread with attribution and evidence (including unanswered
-  comments from earlier rounds), and answers Copilot's suppressed
-  low-confidence findings in a single PR comment.
+  each inline thread with the outcome and evidence (including unanswered
+  comments from earlier rounds), and answers the findings Copilot lists only
+  in its review body (suppressed low-confidence ones and "previously missed"
+  ones) in a single PR comment. Every reply and comment names Copilot as the
+  source and carries the Claude Code attribution line.
 
 ## License
 
