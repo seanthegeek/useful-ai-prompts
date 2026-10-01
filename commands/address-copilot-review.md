@@ -12,9 +12,15 @@ on; otherwise use the pull request for the current branch: $ARGUMENTS
 
 Step 1 — Gather the review. Identify the pull request (`gh pr view`) and fetch
 the most recent review submitted by Copilot (the `copilot-pull-request-reviewer`
-bot) together with all of its inline comments (`gh api
-repos/{owner}/{repo}/pulls/{number}/reviews` and `.../pulls/{number}/comments`,
-filtered by review id).
+bot) together with all of its inline comments (`gh api --paginate
+repos/{owner}/{repo}/pulls/{number}/reviews` and `gh api --paginate
+.../pulls/{number}/comments`, filtered by review id). Always paginate: the
+API returns thirty items per page, and every reply you post on a thread is
+itself recorded as a review, so after a round or two the newest Copilot
+review sits past the first page and an unpaginated listing makes it look as
+if there is no new review at all. If the newest review you find is one you
+already answered, check the pull request's inline comments for a newer
+Copilot comment before concluding nothing arrived.
 
 Read the review body in full, every section, not just the list of inline
 findings. Copilot's overview groups findings under headings, and some of
